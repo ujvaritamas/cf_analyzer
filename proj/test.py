@@ -1,11 +1,11 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
-
 url = "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0"
 page = urlopen(url)
 html_bytes = page.read()
 html = html_bytes.decode("utf-8")
+
 
 #print(page)
 
