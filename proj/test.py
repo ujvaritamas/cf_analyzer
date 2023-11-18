@@ -1,7 +1,20 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from requests_html import HTMLSession
+
+
+
+
 url = "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0"
+
+import pdb; pdb.set_trace()
+session = HTMLSession()
+r = session.get(url)
+r.html.render()
+
+elements = r.html.xpath('//*[@id="leaderboardSponsorVisible"]/div/div[2]/table/tbody/tr[2]/td[2]/div/div[1]')
+
 page = urlopen(url)
 html_bytes = page.read()
 html = html_bytes.decode("utf-8")

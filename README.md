@@ -8,10 +8,20 @@ virtualenv\Scripts\python -m pip install --upgrade pip
 python -m pip install beautifulsoup4
 deactivate
 
+first: run selenium: https://hub.docker.com/r/selenium/standalone-firefox
+
+
+docker pull selenium/standalone-firefox
+docker run -d -p 4444:4444  --name sel -v /dev/shm:/dev/shm selenium/standalone-firefox
 
 docker build -t cf_analyser .
 
 docker run -d --name test -v $(pwd)/proj:/myapp cf_analyser
+
+Containers shall be on the same network
+docker network create myNetwork
+docker network connect myNetwork test
+docker network connect myNetwork sel
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
