@@ -1,0 +1,13 @@
+services:
+  cf_analyser:
+    build: .
+    volumes:
+      - ./proj:/myapp
+    container_name: cf_analyser
+  sel:
+    image: "selenium/standalone-firefox"
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
+    container_name: sel

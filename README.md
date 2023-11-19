@@ -23,6 +23,12 @@ docker network create myNetwork
 docker network connect myNetwork test
 docker network connect myNetwork sel
 
+
+or just run
+docker compose up -d
+
+docker compose down
+
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 docker exec -it < contid > /bin/bash
