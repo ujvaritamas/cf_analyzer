@@ -1,9 +1,11 @@
 services:
-  cf_analyser:
-    build: .
+  cf_analyser_dev:
+    build:
+      context: .
+      target: dev
     volumes:
-      - ./proj:/myapp
-    container_name: cf_analyser
+      - .:/code
+    container_name: cf_analyser_dev
   sel:
     image: "selenium/standalone-firefox"
     ports:

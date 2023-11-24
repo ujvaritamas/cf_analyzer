@@ -1,13 +1,22 @@
 #FROM python:latest
-FROM python:latest
+FROM python:latest as dev
 
 WORKDIR /usr/src/app
 COPY . .
 
 
 RUN pip install beautifulsoup4
-RUN pip install Scrapy
-RUN pip install requests-html
 RUN pip install selenium
+
+
+CMD ["bash", "-c", "while true; do sleep 3600; done"]
+
+FROM dev as test
+
+RUN pip install pytest
+
+CMD ["bash", "-c", "pytest -v"]
+
+FROM test as test_debug
 
 CMD ["bash", "-c", "while true; do sleep 3600; done"]

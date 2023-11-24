@@ -22,7 +22,7 @@ options.set_capability('cloud:options', cloud_options)
 driver = webdriver.Remote(server_url, options=options)
 
 try:
-    driver.implicitly_wait(10) # seconds 
+    driver.implicitly_wait(10) # seconds
     driver.get(url)
 
     time.sleep(10)

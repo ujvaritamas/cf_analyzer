@@ -1,0 +1,15 @@
+services:
+  cf_analyser_test_debug:
+    build:
+      context: .
+      target: test_debug
+    volumes:
+      - .:/code
+    container_name: cf_analyser_test_debug
+  sel:
+    image: "selenium/standalone-firefox"
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
+    container_name: sel

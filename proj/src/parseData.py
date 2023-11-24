@@ -1,8 +1,4 @@
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
-
-from requests_html import HTMLSession
-
 
 with open('file.txt', 'r') as file:
     data = file.read().replace('\n', '')
@@ -28,8 +24,4 @@ def parse_data(page_content):
         print(name, country, region, affiliate, age, size)
 
 parse_data(data)
-    #class="desktop athletes"
 
-#import pdb; pdb.set_trace()
-#table = soup.find(lambda tag: tag.name=='table' and tag.has_attr('id') and tag['id']=="Table1") 
-#rows = table.findAll(lambda tag: tag.name=='tr'
