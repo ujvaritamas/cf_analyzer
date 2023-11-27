@@ -34,3 +34,6 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 docker exec -it < contid > /bin/bash
 
 #delete docker : docker image prune -a, docker image prune -a, docker system prune --volumes
+
+
+make -C proj/ run_pytest
