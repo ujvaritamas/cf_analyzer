@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import os
 import re
+import logging
 
 import Athlete
 import AthleteContainer
@@ -59,22 +60,25 @@ def parse_info(atlete_name:str, page_content) -> Athlete.Athlete:
     return Athlete.Athlete(atlete_name, age, height, weight)
 
 def parse_data(page_content_path, result_path_csv = None, result_path_json = None):
+
+    logger = logging.getLogger(__name__)
+
     athletes = AthleteContainer.AthleteContainer()
 
     page_content = read_data_from_file(page_content_path)
+    logger.info("Read page content from file finished.")
 
     soup = BeautifulSoup(page_content, "html.parser")
-
     athlete_table = soup.find_all("table", {"class": "desktop athletes"})
-
     t_body = athlete_table[0].find_all('tbody')[0]
 
+    logger.info("Parsing athletes")
     for athlete_top in t_body.find_all('tr'):
         name = athlete_top.find_all("div", {"class": "full-name"})[0].text
 
         athletes.add_athlete(parse_info(name, athlete_top))
 
-    athletes.print_athletes()
+    athletes.log_athletes()
     if result_path_csv:
         athletes.write_to_file(result_path_csv)
     if result_path_json:

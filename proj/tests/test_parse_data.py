@@ -77,7 +77,6 @@ class TestIntegration():
 
         test_soup_obj = BeautifulSoup(test_content, "html.parser")
 
-        import pdb; pdb.set_trace()
         test_result = parser.parse_info('test_name', test_soup_obj)
 
         assert test_result.name == 'test_name'

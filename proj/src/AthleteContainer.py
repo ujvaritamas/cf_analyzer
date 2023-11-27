@@ -1,5 +1,5 @@
 import csv
-
+import logging
 import json
 
 class AthleteContainer(object):
@@ -28,6 +28,7 @@ class AthleteContainer(object):
         with open(file_path, 'w') as file:
             file.write(json_string)
 
-    def print_athletes(self):
+    def log_athletes(self):
+        logger = logging.getLogger(__name__)
         for athlete in self.athletes:
-            print(athlete)
+            logger.debug(athlete)
