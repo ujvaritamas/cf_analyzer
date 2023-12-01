@@ -24,10 +24,10 @@ def save_html_to_file(url, file_path):
     driver = webdriver.Remote(server_url, options=options)
     logger = logging.getLogger()
     try:
-        driver.implicitly_wait(10) # seconds
+        driver.implicitly_wait(2) # seconds
         driver.get(url)
 
-        time.sleep(10)
+        time.sleep(2)
         page_source = driver.page_source
 
         logger.info("Page source saved")

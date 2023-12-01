@@ -7,6 +7,7 @@ COPY . .
 
 RUN pip install beautifulsoup4
 RUN pip install selenium
+RUN pip install pandas
 
 
 CMD ["bash", "-c", "while true; do sleep 3600; done"]

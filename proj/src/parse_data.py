@@ -18,6 +18,7 @@ class WeightHeightConverter():
     def convert_lbs_to_kg(weight_in_lbs):
         return float(weight_in_lbs) * WeightHeightConverter.LBS_TO_KG_CONVERSION_VALUE
 
+
 def read_data_from_file(file_path):
     with open(file_path, 'r') as file:
         data = file.read().replace('\n', '')
@@ -78,11 +79,13 @@ def parse_data(page_content_path, result_path_csv = None, result_path_json = Non
 
         athletes.add_athlete(parse_info(name, athlete_top))
 
-    athletes.log_athletes()
+    #athletes.log_athletes()
     if result_path_csv:
         athletes.write_to_file(result_path_csv)
     if result_path_json:
         athletes.write_to_json(result_path_json)
+
+    return athletes
 
 #parse_data(data)
 

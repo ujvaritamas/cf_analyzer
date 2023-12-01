@@ -34,7 +34,6 @@ class TestIntegration():
         test_file_csv = os.path.join(project_file, "test.csv")
         test_file_json = os.path.join(project_file, "test.json")
 
-        
         parser.parse_data(TestIntegration.TEST_PAGE_CONTENT_PATH, result_path_csv = test_file_csv, result_path_json= test_file_json)
 
         assert os.path.exists(test_file_csv)

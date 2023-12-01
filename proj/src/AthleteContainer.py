@@ -1,6 +1,7 @@
 import csv
 import logging
 import json
+import Athlete
 
 class AthleteContainer(object):
     def __init__(self):
@@ -20,8 +21,9 @@ class AthleteContainer(object):
     def write_to_csv(self, file_path):
         with open(file_path, 'w') as file:
             writer = csv.writer(file)
+            writer.writerow(Athlete.Athlete.get_header())
             for athlete in self.athletes:
-                writer.writerow([athlete.name, athlete.country, athlete.region, athlete.affiliate, athlete.age, athlete.size])
+                writer.writerow(athlete.list_csv())
 
     def write_to_json(self, file_path):
         json_string = json.dumps([vars(athlete) for athlete in self.athletes])
@@ -31,4 +33,7 @@ class AthleteContainer(object):
     def log_athletes(self):
         logger = logging.getLogger(__name__)
         for athlete in self.athletes:
-            logger.debug(athlete)
+            logger.info(athlete)
+
+    def concat_athletes(self, athletes_obj):
+        self.athletes = self.athletes + athletes_obj.athletes
