@@ -3,6 +3,8 @@ import logging
 import json
 import Athlete
 
+import database_handling.database_handler as db_handler
+
 class AthleteContainer(object):
     def __init__(self):
         self.athletes = []
@@ -37,3 +39,8 @@ class AthleteContainer(object):
 
     def concat_athletes(self, athletes_obj):
         self.athletes = self.athletes + athletes_obj.athletes
+
+    def save_to_db(self):
+        db_h = db_handler.DataBaseHandler()
+        for athlete in self.athletes:
+            db_h.insert_athlete(athlete)

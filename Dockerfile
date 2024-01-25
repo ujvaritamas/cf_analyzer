@@ -8,6 +8,8 @@ COPY . .
 RUN pip install beautifulsoup4
 RUN pip install selenium
 RUN pip install pandas
+RUN pip install sqlalchemy psycopg2
+
 
 
 CMD ["bash", "-c", "while true; do sleep 3600; done"]

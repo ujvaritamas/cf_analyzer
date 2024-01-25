@@ -1,8 +1,6 @@
 from selenium import webdriver
 import time
 import logging
-import os
-import shutil
 
 
 from selenium import webdriver
