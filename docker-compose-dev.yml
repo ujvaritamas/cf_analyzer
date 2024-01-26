@@ -28,3 +28,12 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  cf_analyser_webs:
+    build:
+      context: ./WebServer0
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./WebServer0:/code
+    container_name: cf_analyser_webs

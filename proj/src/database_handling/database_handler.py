@@ -5,7 +5,7 @@ from sqlalchemy import Table, Column, MetaData
 
 meta = MetaData()
 students = Table(
-   'Athletes', meta,
+   'athletes', meta,
    Column('id', db.Integer, db.Identity(start=1, cycle=True), primary_key=True),
     db.Column('name', db.String),
     db.Column('age', db.Integer),
@@ -21,7 +21,7 @@ class DataBaseHandler:
         conn_url = 'postgresql+psycopg2://yourUserDBName:yourUserDBPassword@yourDBDockerContainerName/yourDBName'
         self.engine = db.create_engine("postgresql+psycopg2://my_user:my_pwd@db:5432/exampledb")
         #self.conn = self.engine.connect()
-        self.table_name = 'Athletes'
+        self.table_name = 'athletes'
         self.metadata_obj = db.MetaData()
         self.table = db.Table(
             self.table_name,
