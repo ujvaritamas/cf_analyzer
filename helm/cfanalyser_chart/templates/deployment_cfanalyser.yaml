@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cf-analyser
+  labels:
+    app: cf-analyser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cf-analyser
+  template:
+    metadata:
+      labels:
+        app: cf-analyser
+    spec:
+      containers:
+      - name: cf-analyser
+        image: tamasujvari/cfanalyser:test_debug

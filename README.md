@@ -27,9 +27,9 @@ docker network connect myNetwork sel
 or just run  
 docker compose up -d  
 
-docker compose -f docker-compose-dev.yml up -d
+docker compose -f docker-compose-dev.yml up -d   
 
-docker compose down
+docker compose down   
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
@@ -42,3 +42,7 @@ make -C proj/ run_pytest
 
 
 https://docs.sqlalchemy.org/en/20/orm/quickstart.html
+
+/opt/homebrew/bin/brew install helm
+/opt/homebrew/bin/brew list helm
+alias helm='/opt/homebrew/Cellar/helm/3.14.2/bin/helm'

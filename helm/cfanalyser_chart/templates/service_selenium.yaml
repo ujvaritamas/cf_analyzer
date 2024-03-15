@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sel
+spec:
+  selector:
+    app.kubernetes.io/name: selenium
+  ports:
+    - protocol: TCP
+      port: 4444
+      targetPort: 4444
