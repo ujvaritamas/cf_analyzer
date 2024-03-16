@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.selenium.name }}
+  labels:
+    app: {{ .Values.app.selenium.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.app.selenium.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.selenium.name }}
+    spec:
+      containers:
+      - name: {{ .Values.app.selenium.name }}
+        image: {{ .Values.app.selenium.image }}
+        ports:
+        - containerPort: {{ .Values.app.selenium.port_internal }}
+        - containerPort: {{ .Values.app.selenium.port_external }}

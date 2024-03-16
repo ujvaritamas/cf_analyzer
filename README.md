@@ -27,18 +27,22 @@ docker network connect myNetwork sel
 or just run  
 docker compose up -d  
 
-docker compose -f docker-compose-dev.yml up -d
+docker compose -f docker-compose-dev.yml up -d   
 
-docker compose down
+docker compose down   
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb   
 
-docker exec -it < contid > /bin/bash
+docker exec -it < contid > /bin/bash   
 
-#delete docker : docker image prune -a, docker image prune -a, docker system prune --volumes
-
-
-make -C proj/ run_pytest
+#delete docker : docker image prune -a, docker image prune -a, docker system prune --volumes   
 
 
-https://docs.sqlalchemy.org/en/20/orm/quickstart.html
+make -C proj/ run_pytest   
+
+
+https://docs.sqlalchemy.org/en/20/orm/quickstart.html   
+
+/opt/homebrew/bin/brew install helm   
+/opt/homebrew/bin/brew list helm   
+alias helm='/opt/homebrew/Cellar/helm/3.14.2/bin/helm'   

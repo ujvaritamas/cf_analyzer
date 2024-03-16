@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.cfanalyser.name }}
+  labels:
+    app: {{ .Values.app.cfanalyser.name }}
+spec:
+  replicas: {{ .Values.app.cfanalyser.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.cfanalyser.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.cfanalyser.name }}
+    spec:
+      containers:
+      - name: {{ .Values.app.cfanalyser.name }}
+        image: {{ .Values.app.cfanalyser.image }}
+        imagePullPolicy: Always
+        env:
+        - name: SELENIUM_ADDR
+          value: http://{{ .Values.app.selenium_svc_internal.name }}:{{ .Values.app.selenium_svc_internal.port }}/wd/hub
