@@ -4,8 +4,10 @@ metadata:
   name: sel
 spec:
   selector:
-    app.kubernetes.io/name: selenium
+    app: selenium
   ports:
-    - protocol: TCP
+    - name: connectionforwebdriver
+      protocol: TCP
       port: 4444
       targetPort: 4444
+  type: ClusterIP

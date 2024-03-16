@@ -17,3 +17,6 @@ spec:
       containers:
       - name: selenium
         image: selenium/standalone-firefox:latest
+        ports:
+        - containerPort: 4444
+        - containerPort: 5900
