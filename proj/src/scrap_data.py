@@ -1,17 +1,14 @@
+import os
 from selenium import webdriver
 import time
 import logging
 
-
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-
-
-#selenium container shall run with this command
-server_url = 'http://sel:4444/wd/hub'
-
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
+
+server_url = os.environ.get('SELENIUM_ADDR')
 
 def save_html_to_file(url, file_path):
     options = FirefoxOptions()

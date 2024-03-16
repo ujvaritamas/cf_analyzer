@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sel-external
+  name: {{ .Values.app.selenium_svc_external.name }}
 spec:
   selector:
-    app: selenium
+    app: {{ .Values.app.selenium.name }}
   ports:
     - name: selenium-external
       protocol: TCP
-      port: 5900
-      targetPort: 5900
-      nodePort: 30171
+      port: {{ .Values.app.selenium_svc_external.port }}
+      targetPort: {{ .Values.app.selenium.port_external }}
+      nodePort: {{ .Values.app.selenium_svc_external.nodePortkub }}
   type: NodePort

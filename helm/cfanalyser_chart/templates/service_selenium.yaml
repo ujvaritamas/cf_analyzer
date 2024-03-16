@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sel
+  name: {{ .Values.app.selenium_svc_internal.name }}
 spec:
   selector:
-    app: selenium
+    app: {{ .Values.app.selenium.name }}
   ports:
     - name: connectionforwebdriver
       protocol: TCP
-      port: 4444
-      targetPort: 4444
+      port: {{ .Values.app.selenium_svc_internal.port }}
+      targetPort: {{ .Values.app.selenium.port_internal }}
   type: ClusterIP

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: selenium
+  name: {{ .Values.app.selenium.name }}
   labels:
-    app: selenium
+    app: {{ .Values.app.selenium.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: selenium
+      app: {{ .Values.app.selenium.name }}
   template:
     metadata:
       labels:
-        app: selenium
+        app: {{ .Values.app.selenium.name }}
     spec:
       containers:
-      - name: selenium
-        image: selenium/standalone-firefox:latest
+      - name: {{ .Values.app.selenium.name }}
+        image: {{ .Values.app.selenium.image }}
         ports:
-        - containerPort: 4444
-        - containerPort: 5900
+        - containerPort: {{ .Values.app.selenium.port_internal }}
+        - containerPort: {{ .Values.app.selenium.port_external }}
