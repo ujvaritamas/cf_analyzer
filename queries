@@ -1,0 +1,13 @@
+SELECT *
+FROM athletes
+WHERE LOWER(name) LIKE '%name%';
+
+
+SELECT id, name, age, height, weight, rank, year
+FROM athletes
+WHERE age = (
+    SELECT MIN(age)
+    FROM athletes
+)
+ORDER BY rank
+LIMIT 100;

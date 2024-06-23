@@ -66,7 +66,6 @@ def parse_data(page_content_path, result_path_csv = None, result_path_json = Non
 
     athletes = AthleteContainer.AthleteContainer()
 
-    
     page_content = read_data_from_file(page_content_path)
     logger.info("Read page content from file finished.")
 

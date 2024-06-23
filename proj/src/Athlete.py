@@ -12,14 +12,21 @@ def singleton(class_):
 class RankCounter():
     def __init__(self):
         self.rank = 1
+        self.year = 0
 
     def increment(self):
         self.rank+=1
 
-    def get_rank(self):
+    def get_rank(self, year):
+        if self.year != year:
+            self.year = year
+            self.rank = 1
         rank = self.rank
         self.increment()
         return rank
+
+    def reset(self):
+        self.rank = 1
 
 class Athlete(object):
     INCH_TO_CM_CENVERSION_VALUE = 2.54
@@ -29,15 +36,15 @@ class Athlete(object):
         self.age = age
         self.height = height
         self.weight = weight
-        self.rank = self.get_rank()
+        self.rank = self.get_rank(year)
         self.year = year
 
     @staticmethod
     def get_header():
         return ['name', 'age', 'height (cm)', 'wight (kg), rank, year']
 
-    def get_rank(self) ->int:
-        return RankCounter().get_rank()
+    def get_rank(self, year) ->int:
+        return RankCounter().get_rank(year)
 
     def __str__(self):
         return f"{self.name}, {self.age}, {self.height}, {self.weight}, {self.rank}, {self.year}"

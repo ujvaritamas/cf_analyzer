@@ -7,17 +7,10 @@ import parse_data
 import AthleteContainer
 
 import database_handling.database_handler as db_handler
+from config.config import BasicConfig
 
 
-URLS = ["https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=2",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=3",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=4",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=5",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=6",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=7",
-        "https://games.crossfit.com/leaderboard/open/2022?view=0&division=2&region=0&scaled=0&sort=0&page=8",
-        ]
+
 
 
 def main():
@@ -29,7 +22,10 @@ def main():
     db_h = db_handler.DataBaseHandler()
     db_h.create_athlete_table()
 
-    for url in URLS:
+    urls = BasicConfig.generateUrls(BasicConfig.BASE_URL_FEMALE, BasicConfig.YEARS, 3)
+
+
+    for url in urls:
         logger.info("Saving html ({0}) to file {1}".format(url, filename))
         scrap_data.save_html_to_file(url, filename)
 
