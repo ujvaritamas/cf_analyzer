@@ -27,7 +27,7 @@ docker network connect myNetwork sel
 or just run  
 docker compose up -d  
 
-docker compose -f docker-compose-dev.yml up -d   
+docker compose -f docker-compose-dev.yaml up -d   
 
 docker compose down   
 
@@ -36,6 +36,9 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 docker exec -it < contid > /bin/bash   
 
 #delete docker : docker image prune -a, docker image prune -a, docker system prune --volumes   
+
+/Users/tamasujvari/My_Apps/cf_analyser/cf_analyzer/docker-compose-dev.yml
+/Users/tamasujvari/My_Apps/cf_analyser/cf_analyzer/docker-compose-dev.yaml
 
 
 make -C proj/ run_pytest   

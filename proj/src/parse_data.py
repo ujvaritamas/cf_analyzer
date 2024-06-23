@@ -24,7 +24,7 @@ def read_data_from_file(file_path):
         data = file.read().replace('\n', '')
     return data
 
-def parse_info(atlete_name:str, page_content) -> Athlete.Athlete:
+def parse_info(atlete_name:str, page_content, year:int) -> Athlete.Athlete:
     info_list = page_content.find_all("ul", {"class": "info"})[0].find_all("li")
     age_pattern = re.compile(r'Age (\d+)')
     weight_lbs_pattern = re.compile(r'(\d+) lb')
@@ -58,7 +58,7 @@ def parse_info(atlete_name:str, page_content) -> Athlete.Athlete:
         if height_cm_match:
             height = float(height_cm_match.group(1))
 
-    return Athlete.Athlete(atlete_name, age, height, weight)
+    return Athlete.Athlete(atlete_name, age, height, weight, year)
 
 def parse_data(page_content_path, result_path_csv = None, result_path_json = None):
 
@@ -66,10 +66,13 @@ def parse_data(page_content_path, result_path_csv = None, result_path_json = Non
 
     athletes = AthleteContainer.AthleteContainer()
 
+    
     page_content = read_data_from_file(page_content_path)
     logger.info("Read page content from file finished.")
 
     soup = BeautifulSoup(page_content, "html.parser")
+    year = parse_comp_year(soup, logger)
+
     athlete_table = soup.find_all("table", {"class": "desktop athletes"})
     t_body = athlete_table[0].find_all('tbody')[0]
 
@@ -77,7 +80,7 @@ def parse_data(page_content_path, result_path_csv = None, result_path_json = Non
     for athlete_top in t_body.find_all('tr'):
         name = athlete_top.find_all("div", {"class": "full-name"})[0].text
 
-        athletes.add_athlete(parse_info(name, athlete_top))
+        athletes.add_athlete(parse_info(name, athlete_top, year))
 
     #athletes.log_athletes()
     if result_path_csv:
@@ -87,5 +90,21 @@ def parse_data(page_content_path, result_path_csv = None, result_path_json = Non
 
     return athletes
 
+def parse_comp_year(soup, logger) -> int:
+    year = 1000
+    year_element = soup.select_one("p.kicker")
+    if year_element:
+        text = year_element.get_text(strip=True)
+
+        # Use regular expression to extract the year
+        match = re.search(r'\b\d{4}\b', text)
+        if match:
+            year = int(match.group())
+        else:
+            logger.info("Competition year not found (default year is 1000)")
+    else:
+        logger.info("Competition year not found (default year is 1000)")
+
+    return year
 #parse_data(data)
 

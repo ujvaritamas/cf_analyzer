@@ -54,12 +54,13 @@ class TestIntegration():
 
         test_soup_obj = BeautifulSoup(test_content, "html.parser")
 
-        test_result = parser.parse_info('test_name', test_soup_obj)
+        test_result = parser.parse_info('test_name', test_soup_obj, 2022)
 
         assert test_result.name == 'test_name'
         assert test_result.age == 18
         assert test_result.weight == pytest.approx(61.235, rel = 1e-3)          #135lbs = 61.235kg
         assert test_result.height == pytest.approx(160.02, rel= 1e-3)           #63IN = 160.02cm
+        assert test_result.year == 2022
 
     def test_parse_info__custom_data_EU(self):
         test_content ='''<div class="full-name"><div class="full-name">Mallory O'Brien</div>
@@ -76,9 +77,10 @@ class TestIntegration():
 
         test_soup_obj = BeautifulSoup(test_content, "html.parser")
 
-        test_result = parser.parse_info('test_name', test_soup_obj)
+        test_result = parser.parse_info('test_name', test_soup_obj, 2022)
 
         assert test_result.name == 'test_name'
         assert test_result.age == 18
         assert test_result.weight == pytest.approx(60, rel = 1e-3)          #135lbs = 61.235kg
         assert test_result.height == pytest.approx(165, rel= 1e-3)           #63IN = 160.02cm
+        assert test_result.year == 2022

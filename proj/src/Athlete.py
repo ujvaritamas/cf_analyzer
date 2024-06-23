@@ -24,28 +24,29 @@ class RankCounter():
 class Athlete(object):
     INCH_TO_CM_CENVERSION_VALUE = 2.54
 
-    def __init__(self, name: str, age: int, height: float, weight: float):
+    def __init__(self, name: str, age: int, height: float, weight: float, year:int):
         self.name = name
         self.age = age
         self.height = height
         self.weight = weight
         self.rank = self.get_rank()
+        self.year = year
 
     @staticmethod
     def get_header():
-        return ['name', 'age', 'height (cm)', 'wight (kg), rank']
+        return ['name', 'age', 'height (cm)', 'wight (kg), rank, year']
 
     def get_rank(self) ->int:
         return RankCounter().get_rank()
 
     def __str__(self):
-        return f"{self.name}, {self.age}, {self.height}, {self.weight}, {self.rank}"
+        return f"{self.name}, {self.age}, {self.height}, {self.weight}, {self.rank}, {self.year}"
 
     def __repr__(self):
-        return f"{self.name}, {self.age}, {self.height}, {self.weight}, {self.rank}"
+        return f"{self.name}, {self.age}, {self.height}, {self.weight}, {self.rank}, {self.year}"
 
     def list_csv(self):
-        return [self.name, self.age, self.height, self.weight, self.rank]
+        return [self.name, self.age, self.height, self.weight, self.rank, self.year]
 
     def convert_inch_to_cm(height_in_inch):
         return height_in_inch * Athlete.INCH_TO_CM_CENVERSION_VALUE
